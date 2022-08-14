@@ -25,4 +25,4 @@ func get_plugin_name():
 	return "Stikki"
 
 func get_plugin_icon():
-	return get_editor_interface().get_base_control().get_icon("Sprite", "EditorIcons")
+	return get_editor_interface().get_base_control().get_icon("FileDead", "EditorIcons")

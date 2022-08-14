@@ -1,3 +1,4 @@
+tool
 extends Node2D
 
 var mouse_over = false
@@ -8,8 +9,23 @@ var offset = Vector2.ZERO
 
 func _input(event):
 	if event is InputEventMouseButton:
-		if event.is_pressed() and mouse_over:
+		if event.button_index == BUTTON_LEFT and  event.is_pressed() and mouse_over:
 			$things/TextEdit.grab_focus()
+		if event.button_index == BUTTON_LEFT and event.is_pressed() and mouse_over:
+			following = true
+			offset = get_global_mouse_position() - global_position
+			$things.scale = Vector2.ONE * 0.9
+		elif event.button_index == BUTTON_LEFT and event.is_pressed() and (not mouse_over) and $things/TextEdit.has_focus():
+			get_parent().get_parent().trash_focus()
+		if event == null:
+			following = false
+
+	if event is InputEventKey:
+		if event.is_pressed() and $things/TextEdit.has_focus():
+			if event.scancode == KEY_DELETE:
+				print("oky")
+				mouse_over = false
+#				die()
 
 func _physics_process(delta):
 	$things.scale = lerp($things.scale, Vector2.ONE, delta * 15)
@@ -17,19 +33,6 @@ func _physics_process(delta):
 	
 	z_index = global_position.y
 
-	if Input.is_action_just_pressed("click") and mouse_over:
-		following = true
-		offset = get_global_mouse_position() - global_position
-		$things.scale = Vector2.ONE * 0.9
-	elif Input.is_action_just_pressed("click") and (not mouse_over) and $things/TextEdit.has_focus():
-		get_parent().get_parent().trash_focus()
-	if Input.is_action_just_released("click"):
-		following = false
-
-	if Input.is_action_just_pressed("del") and $things/TextEdit.has_focus():
-		mouse_over = false
-		die()
-		
 	if following:
 		var target = get_global_mouse_position() - offset
 		speed = lerp(speed, (target-global_position) * 10, delta * 20)
