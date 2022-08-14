@@ -15,6 +15,8 @@ func _physics_process(delta):
 	$things.scale = lerp($things.scale, Vector2.ONE, delta * 15)
 	$things/Label.text = $things/TextEdit.text
 	
+	z_index = global_position.y
+
 	if Input.is_action_just_pressed("click") and mouse_over:
 		following = true
 		offset = get_global_mouse_position() - global_position
@@ -23,17 +25,17 @@ func _physics_process(delta):
 		get_parent().get_parent().trash_focus()
 	if Input.is_action_just_released("click"):
 		following = false
-	
+
 	if Input.is_action_just_pressed("del") and $things/TextEdit.has_focus():
 		mouse_over = false
 		die()
-	
+		
 	if following:
 		var target = get_global_mouse_position() - offset
 		speed = lerp(speed, (target-global_position) * 10, delta * 20)
 	else:
 		speed = lerp(speed, Vector2.ZERO, delta * 10)
-	
+		
 	global_position += speed * delta
 	bouncyyyy()
 

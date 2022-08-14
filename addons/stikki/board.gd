@@ -12,6 +12,5 @@ func add_note(pos):
 	var thing = sticky.instance()
 	$notes.add_child(thing)
 	thing.position = pos
-
 func trash_focus():
 	$Button.grab_focus()

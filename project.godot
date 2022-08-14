@@ -13,6 +13,10 @@ config_version=4
 config/name="stikki"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/godot-plugin-refresher/plugin.cfg", "res://addons/stikki/plugin.cfg" )
+
 [input]
 
 click={
