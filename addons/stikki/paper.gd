@@ -17,7 +17,7 @@ func _input(event):
 			$things.scale = Vector2.ONE * 0.9
 		elif event.button_index == BUTTON_LEFT and event.is_pressed() and (not mouse_over) and $things/TextEdit.has_focus():
 			get_parent().get_parent().trash_focus()
-		if event == null:
+		if not event.is_pressed():
 			following = false
 
 	if event is InputEventKey:
