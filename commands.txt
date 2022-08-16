@@ -1,4 +1,6 @@
 git checkout master   
 git branch main master -f    
 git checkout main  
-git push origin main -f 
+git push origin main -f
+----
+&"c:\Users\poklo\Desktop\poklop\programy\Godot_v3.3.1-stable_win64.exe" --path "c:\Users\poklo\Desktop\poklop\programování\projekty\game dev\stikki" -e

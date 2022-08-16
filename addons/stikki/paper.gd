@@ -25,7 +25,7 @@ func _input(event):
 			if event.scancode == KEY_DELETE:
 				print("oky")
 				mouse_over = false
-#				die()
+				die()
 
 func _physics_process(delta):
 	$things.scale = lerp($things.scale, Vector2.ONE, delta * 15)
@@ -41,6 +41,9 @@ func _physics_process(delta):
 		
 	global_position += speed * delta
 	bouncyyyy()
+	
+	if len($things/Label.text) >= 83:
+		get_parent().get_parent().trash_focus()
 
 func bouncyyyy():
 	rotation = speed.angle()
